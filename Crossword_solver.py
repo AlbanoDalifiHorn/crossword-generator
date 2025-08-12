@@ -36,12 +36,14 @@ class CrosswordSolver:
 
         return list(result)
 
+    # Check every Direction as long we have static small numbers -> later feature -> using Trie tree to solve it on bigger frequencies of words on basis from solve function
     def find_word_positions(self, grid: List[List[str]], words: List[str]) -> Dict[str, List[Tuple[int, int]]]:
         rows, cols = len(grid), len(grid[0])
         positions = {}
 
         for word in words:
             found = False
+
             for r in range(rows):
                 for c in range(cols - len(word) + 1):
                     if all(grid[r][c + i] == word[i] for i in range(len(word))):
@@ -76,4 +78,23 @@ class CrosswordSolver:
                             found = True
                             break
                     if found: break
+
+            if not found:
+                for r in range(len(word) - 1, rows):
+                    for c in range(len(word) - 1, cols):
+                        if all(grid[r - i][c - i] == word[i] for i in range(len(word))):
+                            positions[word] = [(r - i, c - i) for i in range(len(word))]
+                            found = True
+                            break
+                    if found: break
+
+            if not found:
+                for r in range(rows - len(word) + 1):
+                    for c in range(len(word) - 1, cols):
+                        if all(grid[r + i][c - i] == word[i] for i in range(len(word))):
+                            positions[word] = [(r + i, c - i) for i in range(len(word))]
+                            found = True
+                            break
+                    if found: break
+
         return positions
