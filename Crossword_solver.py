@@ -42,7 +42,6 @@ class CrosswordSolver:
 
         for word in words:
             found = False
-            # Suche horizontal
             for r in range(rows):
                 for c in range(cols - len(word) + 1):
                     if all(grid[r][c + i] == word[i] for i in range(len(word))):
@@ -51,7 +50,6 @@ class CrosswordSolver:
                         break
                 if found: break
 
-            # Suche vertikal
             if not found:
                 for c in range(cols):
                     for r in range(rows - len(word) + 1):
@@ -62,7 +60,6 @@ class CrosswordSolver:
                     if found: break
 
             if not found:
-                # Diagonale: links oben nach rechts unten
                 for r in range(rows - len(word) + 1):
                     for c in range(cols - len(word) + 1):
                         if all(grid[r + i][c + i] == word[i] for i in range(len(word))):
@@ -72,7 +69,6 @@ class CrosswordSolver:
                     if found: break
 
             if not found:
-                # Diagonale: links unten nach rechts oben
                 for r in range(len(word) - 1, rows):
                     for c in range(cols - len(word) + 1):
                         if all(grid[r - i][c + i] == word[i] for i in range(len(word))):
