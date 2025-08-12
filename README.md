@@ -3,9 +3,13 @@ Building a crossword-generator based on my 212 Code from Word Search II on Leetc
 
 # Features
 - Efficient word search using Trie and DFS
-
-# Planned
 - Random placement of words horizontally and vertacially
 - Grid fill with random chars
-- Clue generation using NLP
-- Web UI with Flask
+
+# Planend
+- Mark every found word
+- Creating hints for the User
+- Use a dataset to get alot new words
+- Using Deep Learning to get only relevant Words based on topic
+- Creating first UI to get the first launch of the prototype
+
